@@ -15,6 +15,7 @@ public class MorseCode {
         * Keys will be characters and values will be their   *
         * corresponding definition in Morse Code             *
         * ************************************************** */
+
         Map<Character, String> morseCode = new HashMap<>();
         morseCode.put('A', ".-");
         morseCode.put('B', "-...");
@@ -44,7 +45,7 @@ public class MorseCode {
         morseCode.put('Z', "--..");
         morseCode.put(' ', "/");
 
-        /* ********************* converting From : Letters TO: Morse Code************* */
+        /* ********************* Converting From --> Letters TO --> Morse Code ************* */
 
         char[] letters = lettersToMorseCode("Hi there");     // test case given in the problem descriptions
 
@@ -53,7 +54,7 @@ public class MorseCode {
         }
         System.out.println();
 
-        /* ********************* converting From : Morse Code TO: Plain Text ************* */
+        /* ********************* Converting From --> Morse Code TO --> Plain Text ************* */
 
         /* ************************************************************ *
          * Declare a map to store morse code as key                     *
@@ -69,7 +70,7 @@ public class MorseCode {
             characters.put(value,key);
         }
 
-        String[] morseChars = morseCodeToLetters(".... .. / - .... . .-. . ");
+        String[] morseChars = morseCodeToLetters();
 
         for (int i = 0; i < morseChars.length; i++) {
             if(morseChars[i].equals("")){
@@ -79,11 +80,11 @@ public class MorseCode {
         }
         System.out.println();
     }
-    private static char[] lettersToMorseCode(String words){
+    static char[] lettersToMorseCode(String words){
 
         return words.toUpperCase().toCharArray();
     }
-    private static String[] morseCodeToLetters(String morseword){
-        return morseword.split(" ");
+    private static String[] morseCodeToLetters(){
+        return ".... .. / - .... . .-. . ".split(" ");
     }
 }
