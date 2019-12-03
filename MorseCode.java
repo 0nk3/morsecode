@@ -46,8 +46,8 @@ public class MorseCode {
         morseCode.put(' ', "/");
 
         /* ********************* Converting From --> Letters TO --> Morse Code ************* */
-
-        char[] letters = lettersToMorseCode("Hi there");     // test case given in the problem descriptions
+        //letters to morse code method call 
+        char[] letters = lettersToMorseCode("Hi there");     // test case given in the problem descriptions(it can be changed to anything else)
 
         for (int i = 0; i < letters.length; i++) {
             System.out.print(morseCode.get(letters[i]) + " ");
@@ -69,8 +69,9 @@ public class MorseCode {
             String value = entry.getValue();
             characters.put(value,key);
         }
-
-        String[] morseChars = morseCodeToLetters();
+        
+        // Morse code to letters method call
+        String[] morseChars = morseCodeToLetters(".... .. / - .... . .-. . "); // test case given in the problem descriptions(it can be changed to anything else)
 
         for (int i = 0; i < morseChars.length; i++) {
             if(morseChars[i].equals("")){
@@ -84,7 +85,7 @@ public class MorseCode {
 
         return words.toUpperCase().toCharArray();
     }
-    private static String[] morseCodeToLetters(){
-        return ".... .. / - .... . .-. . ".split(" ");
+    private static String[] morseCodeToLetters(String morseCodeWord){
+        return morseCodeWord.split(" ");
     }
 }
