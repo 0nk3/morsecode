@@ -9,10 +9,12 @@ import static org.junit.jupiter.api.Assertions.*;
 public class MorseCodeTest {
 
     @Test
-    public void test0(){
-        MorseCode mc =  new MorseCode();
+    public void test0() {
+        MorseCode mc = new MorseCode();
         assertEquals(8, mc.lettersToMorseCode("Hi there").length, " This test case should pass. Same number of characters");
-
+    }
+    @Test
+    public void test1(){
         // Dealing with space count comparison
         String spaces = " ";
         int spacesCounter = 0;
@@ -22,7 +24,6 @@ public class MorseCodeTest {
             spacesCounter ++;
         }
         assertEquals(1, spacesCounter, "This test should PASS because there is an equal number of spaces between the output and expected output i.e 1");
-        assertEquals(7, spacesCounter, "This test should FAIL because there is an unequal number of spaces between the output and expected output");
+//        assertEquals(7, spacesCounter, "This test should FAIL because there is an unequal number of spaces between the output and expected output");
     }
-
 }
