@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 /* *********************************************** *
@@ -15,6 +16,8 @@ public class MorseCode {
         * Keys will be characters and values will be their   *
         * corresponding definition in Morse Code             *
         * ************************************************** */
+        final String plainTextSentence = " Hi There";
+        final String morseCodeSentence = ".... .. / - .... . .-. . ";
 
         Map<Character, String> morseCode = new HashMap<>();
         morseCode.put('A', ".-");
@@ -47,14 +50,14 @@ public class MorseCode {
 
         /* ********************* Converting From --> Letters TO --> Morse Code ************* */
         //letters to morse code method call 
-        char[] letters = lettersToMorseCode("Hi there");     // test case given in the problem descriptions(it can be changed to anything else)
+        char[] letters = lettersToMorseCode(plainTextSentence);     // test case given in the problem descriptions(it can be changed to anything else)
 
-        for (int i = 0; i < letters.length; i++) {
-            System.out.print(morseCode.get(letters[i]) + " ");
+        for (char letter : letters) {
+            System.out.print(morseCode.get(letter) + " ");
         }
         System.out.println();
 
-        /* ********************* Converting From --> Morse Code TO --> Plain Text ************* */
+        /* ********************* Converting From : Morse Code --> Plain Text ************* */
 
         /* ************************************************************ *
          * Declare a map to store morse code as key                     *
@@ -71,7 +74,7 @@ public class MorseCode {
         }
         
         // Morse code to letters method call
-        String[] morseChars = morseCodeToLetters(".... .. / - .... . .-. . "); // test case given in the problem descriptions(it can be changed to anything else)
+        String[] morseChars = morseCodeToLetters(morseCodeSentence); // test case given in the problem descriptions(it can be changed to anything else)
 
         for (int i = 0; i < morseChars.length; i++) {
             if(morseChars[i].equals("")){
@@ -88,4 +91,5 @@ public class MorseCode {
     private static String[] morseCodeToLetters(String morseCodeWord){
         return morseCodeWord.split(" ");
     }
+
 }
