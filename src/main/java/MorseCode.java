@@ -1,4 +1,3 @@
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 /* *********************************************** *
@@ -8,18 +7,13 @@ import java.util.Map;
  * input as string and convert to morse code or    *
  *  vice-versa                                     *
  * *********************************************** */
-public class MorseCode {
-    public static void main(String[] args) {
+class MorseCode {
+    private StringBuilder plaintext = new StringBuilder();
+    private StringBuilder morsetext = new StringBuilder();
 
-        /* ************************************************* *
-         *A Map best suitable to store keys and values.      *
-        * Keys will be characters and values will be their   *
-        * corresponding definition in Morse Code             *
-        * ************************************************** */
-        final String plainTextSentence = " Hi There";
-        final String morseCodeSentence = ".... .. / - .... . .-. . ";
-
-        Map<Character, String> morseCode = new HashMap<>();
+    private Map<Character, String> morseCode = new HashMap<>();
+    // Add elements and the corresponding values to the map
+    MorseCode(){
         morseCode.put('A', ".-");
         morseCode.put('B', "-...");
         morseCode.put('C', "-.-.");
@@ -47,49 +41,32 @@ public class MorseCode {
         morseCode.put('Y', "-.--");
         morseCode.put('Z', "--..");
         morseCode.put(' ', "/");
+    }
 
-        /* ********************* Converting From --> Letters TO --> Morse Code ************* */
-        //letters to morse code method call 
-        char[] letters = lettersToMorseCode(plainTextSentence);     // test case given in the problem descriptions(it can be changed to anything else)
-
-        for (char letter : letters) {
-            System.out.print(morseCode.get(letter) + " ");
+    // Convert plain text to morse code
+    void lettersToMorseCode(String plainTextSentence){
+        char[] letters = plainTextSentence.toUpperCase().toCharArray();
+        for(char letter : letters){
+            plaintext.append(morseCode.get(letter)).append(" ");
         }
+        System.out.println(plaintext);
+    }
+
+    // Convert morse code to letters
+    void morseCodeToLetters(String morseCodeSentence){
         System.out.println();
-
-        /* ********************* Converting From : Morse Code --> Plain Text ************* */
-
-        /* ************************************************************ *
-         * Declare a map to store morse code as key                     *
-         *and characters as value for reverse conversion                *
-         * The same Map will be used to create the content of the new   *
-         * map, just values as key and keys and values this time around *
-         * ************************************************************ */
         Map<String, Character> characters = new HashMap<>();
-
-        for (Map.Entry<Character,String> entry: morseCode.entrySet()){
+        // swap keys and values in the initial map to form a new map called characters
+        for (Map.Entry<Character,String> entry: morseCode.entrySet()) {
             char key = entry.getKey();
             String value = entry.getValue();
-            characters.put(value,key);
+            characters.put(value, key);
         }
-        
-        // Morse code to letters method call
-        String[] morseChars = morseCodeToLetters(morseCodeSentence); // test case given in the problem descriptions(it can be changed to anything else)
-
-        for (int i = 0; i < morseChars.length; i++) {
-            if(morseChars[i].equals("")){
-                morseChars[i] = " ";
-            }
-            System.out.print(characters.get(morseChars[i]));
+        String[] morse = morseCodeSentence.split(" ");
+        for (String morseLetter: morse) {
+            morsetext.append(characters.get(morseLetter)).append(" ");
         }
-        System.out.println();
+        System.out.println(morsetext);
     }
-    static char[] lettersToMorseCode(String words){
-
-        return words.toUpperCase().toCharArray();
-    }
-    private static String[] morseCodeToLetters(String morseCodeWord){
-        return morseCodeWord.split(" ");
-    }
-
 }
+
